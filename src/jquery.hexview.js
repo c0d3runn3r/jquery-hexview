@@ -46,6 +46,22 @@
 
         },
 
+        /**
+         * Convert an integer to a fixed (2 byte) hex value
+         *
+         * @param num a number
+         * @revtval a string like "01EF"
+         */
+        fixedHex: function (num) {
+
+            var str=num.toString(16).toUpperCase();
+            while(str.length <4){
+
+                str="0"+str;
+            }
+
+            return str;
+        },
 
         /**
          * Display text in an safe way
@@ -59,15 +75,25 @@
             for(var n=0; n<text.length; n++){
 
                 var c=text.charAt(n);
+                var code=c.charCodeAt(0);
 
                 // Is this one of our mapped characters?
                 if(typeof this.options.character_substitutions[c] == "string") {
 
+                    // It's a special mapped character
                     out+="<span class='hexview-escaped'>"+this.options.character_substitutions[c]+"</span>";
 
                 } else {
 
-                    out +=c;
+                    // It's a non printable character
+                    if(code < 32 || code == 127) {
+
+                        out +="<span class='hexview-escaped'>\\u"+this.fixedHex(code)+"</span>";
+                    
+                    } else {
+
+                        out +=c;
+                    }
                 }
 
             }
@@ -109,6 +135,9 @@
 
             	this.setText(value);
                 break;
+
+                /* TODO - Allow dynamic change of height, etc? */
+
             default:
                 //this.options[ key ] = value;
                 break;

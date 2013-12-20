@@ -31,7 +31,7 @@
 
 
 				//console.log("Pasted some hex!");
-				$("#view").hexview("setText","some text\r\nsome more text\b\r\nThis should really be lots and lots of text!  \nbut it is sometimes\nhard\n to see exactly\n what we want to see!!  This is a really long line!  This should either wrap or cause some scrolling!  WHAT???\n\n\nsomethin");
+				$("#view").hexview("setText","Some text\r\nSome more text\b\r\nome strange (but printable) characters: hej där == 안녕하세요\r\nThis should really be lots and lots of text!\nNUL is \u0000\r\nDEL is \u007F\nThis is a really long line!  This should either wrap or cause some scrolling!\n\nThe end...");
 				return;
 //				e.preventDefault();
 			});
