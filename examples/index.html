@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+		<title>jQuery hex view example</title>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script src="../src/jquery.hexview.js"></script>
+		<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+		<style>
+			span.hexview-escaped {
+				background: #777;
+				color: white;
+				border: 1px solid white;
+				letter-spacing: 0;
+				font-size: smaller;
+			}
+
+		</style>
+		<script>
+
+		$(document).ready(function() {
+
+
+			// Setup hexview
+			$("#view").hexview();
+
+
+			// Wire button handler
+			$("#paste").button().click(function(e){
+
+
+				//console.log("Pasted some hex!");
+				$("#view").hexview("setText","some text\r\nsome more text\b\r\nThis should really be lots and lots of text!  \nbut it is sometimes\nhard\n to see exactly\n what we want to see!!  This is a really long line!  This should either wrap or cause some scrolling!  WHAT???\n\n\nsomethin");
+				return;
+//				e.preventDefault();
+			});
+
+			$("#view").hexview();
+
+		});
+
+
+		</script>
+	</head>
+	<body>
+
+		<div id="view"></div>
+		<br />
+		<br />
+		<br />
+
+		<button id="paste">Paste some hex!</button>
+
+
+	</body>
+</html>
