@@ -71,6 +71,9 @@
          */
         _print_text: function(text) {
 
+            // We'll need a jQuery tag to convert HTML entities
+            var $convert=$("<div />");
+
             var out="";
             for(var n=0; n<text.length; n++){
 
@@ -92,7 +95,7 @@
                     
                     } else {
 
-                        out +=c;
+                        out +=$convert.empty().text(c).html();
                     }
                 }
 
