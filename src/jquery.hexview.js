@@ -79,32 +79,33 @@
             var $convert=$("<div />");
 
             var out="";
-            for(var n=0; n<text.length; n++){
+            if(text && typeof(text) == "string") {
+                for(var n=0; n<text.length; n++){
 
-                var c=text.charAt(n);
-                var code=c.charCodeAt(0);
+                    var c=text.charAt(n);
+                    var code=c.charCodeAt(0);
 
-                // Is this one of our mapped characters?
-                if(typeof this.options.character_substitutions[c] == "string") {
+                    // Is this one of our mapped characters?
+                    if(typeof this.options.character_substitutions[c] == "string") {
 
-                    // It's a special mapped character
-                    out+="<span class='hexview-escaped'>"+this.options.character_substitutions[c]+"</span>";
+                        // It's a special mapped character
+                        out+="<span class='hexview-escaped'>"+this.options.character_substitutions[c]+"</span>";
 
-                } else {
-
-                    // It's a non printable character
-                    if(code < 32 || code == 127) {
-
-                        out +="<span class='hexview-escaped'>\\u"+this.fixedHex(code)+"</span>";
-                    
                     } else {
 
-                        out +=$convert.empty().text(c).html();
+                        // It's a non printable character
+                        if(code < 32 || code == 127) {
+
+                            out +="<span class='hexview-escaped'>\\u"+this.fixedHex(code)+"</span>";
+                        
+                        } else {
+
+                            out +=$convert.empty().text(c).html();
+                        }
                     }
+
                 }
-
             }
-
         	this.element.html(out);
 
         },
