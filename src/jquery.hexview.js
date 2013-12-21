@@ -19,7 +19,9 @@
             encoding: "utf8",
             text: "",
             width: 400,
-            height: 175,
+            max_height: 175,
+            min_height: 35,
+            background: "white",
             character_substitutions: {
 
                 "\\"    :   "\\\\", 
@@ -41,7 +43,9 @@
             this.element
                 .addClass("ui-widget ui-widget-content ui-corner-all ui-resizable")
                 .css("overflow-y", "scroll")
-                .height(this.options.height)
+                .css("max-height", this.options.max_height)
+                .css("min-height", this.options.min_height)
+                .css("background",this.options.background )
                 .width(this.options.width);
 
         },
@@ -128,6 +132,16 @@
         	this.options.text=text;
         	this._print_text(text);
             this._trigger("text_changed", {});
+        },
+
+        /**
+         * Public text getter
+         *
+         * @retval our text
+         */
+        getText: function (text) {
+
+            return this.options.text;
         },
 
         // Respond to any changes the user makes to the 
